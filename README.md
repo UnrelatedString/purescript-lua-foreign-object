@@ -1,10 +1,10 @@
-# purescript-foreign-object
+# purescript-lua-foreign-object
 
-[![Latest release](http://img.shields.io/github/release/purescript/purescript-foreign-object.svg)](https://github.com/purescript/purescript-foreign-object/releases)
-[![Build status](https://github.com/purescript/purescript-foreign-object/workflows/CI/badge.svg?branch=master)](https://github.com/purescript/purescript-foreign-object/actions?query=workflow%3ACI+branch%3Amaster)
-[![Pursuit](https://pursuit.purescript.org/packages/purescript-foreign-object/badge)](https://pursuit.purescript.org/packages/purescript-foreign-object)
+[![CI](https://github.com/UnrelatedString/purescript-lua-foreign-object/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/UnrelatedString/purescript-lua-foreign-object/actions/workflows/ci.yml)
+![Latest Version Tag](https://img.shields.io/github/v/tag/UnrelatedString/purescript-lua-foreign-object )
+[![Pursuit](https://pursuit.purescript.org/packages/purescript-lua-foreign-object/badge?)](https://pursuit.purescript.org/packages/purescript-lua-foreign-object)
 
-Functions for working with homogeneous JavaScript objects from PureScript. Similar to using `Map String a` but simply reusing JavaScript objects.
+Functions for working with homogeneous Lua tables from PureScript. Similar to using `Map String a` but simply reusing Lua tables, with the same API as `foreign-object` for the default JavaScript backend.
 
 ## Installation
 
