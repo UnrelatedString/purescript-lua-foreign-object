@@ -36,25 +36,19 @@ export function _mapWithKey(m0, f) {
   return m;
 }
 
-export function _foldM(bind) {
-  return function (f) {
-    return function (mz) {
-      return function (m) {
-        var acc = mz;
-        function g(k) {
-          return function (z) {
-            return f(z)(k)(m[k]);
-          };
-        }
-        for (var k in m) {
-          if (hasOwnProperty.call(m, k)) {
-            acc = bind(acc)(g(k));
-          }
-        }
-        return acc;
-      };
+export function __foldM(bind, f, mz, m) {
+  var acc = mz;
+  function g(k) {
+    return function (z) {
+      return f(z)(k)(m[k]);
     };
-  };
+  }
+  for (var k in m) {
+    if (hasOwnProperty.call(m, k)) {
+      acc = bind(acc)(g(k));
+    }
+  }
+  return acc;
 }
 
 export function _foldSCObject(m, z, f, fromMaybe) {

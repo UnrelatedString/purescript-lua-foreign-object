@@ -98,7 +98,10 @@ instance functorObject :: Functor Object where
 instance functorWithIndexObject :: FunctorWithIndex String Object where
   mapWithIndex = mapWithKey
 
-foreign import _foldM :: forall a m z. (m -> (z -> m) -> m) -> (z -> String -> a -> m) -> m -> Object a -> m
+foreign import __foldM :: forall a m z. Fn4 (m -> (z -> m) -> m) (z -> String -> a -> m) m (Object a) m
+
+_foldM :: forall a m z. (m -> (z -> m) -> m) -> (z -> String -> a -> m) -> m -> Object a -> m
+_foldM = runFn4 __foldM
 
 -- | Fold the keys and values of an object
 fold :: forall a z. (z -> String -> a -> z) -> z -> Object a -> z
