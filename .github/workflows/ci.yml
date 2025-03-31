@@ -1,38 +1,25 @@
 name: CI
-
-on:
-  push
+on: [push]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v4
 
-      - name: Uhhh I feel like I should not use this since I need the pslua backend
-        uses: purescript-contrib/setup-purescript@main
-        with:
-          purescript: "unstable"
-
-      - name: Install Lua interpreter
-        uses: leafo/gh-actions-lua@v11
-
-      - uses: actions/setup-node@v4
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
         with:
           node-version: "20.x"
 
-      - name: Install Node dependencies
-        run: npm install
-
-      - name: Install Bower dependencies except I think I do have to abandon Bower anyways to use the package sets and the Prelude does also just use Spago
+      - name: Set up Purescript and Spago
         run: |
-          npm i -g bower
-          bower install --production
+          npm i -g purescript
+          npm i -g spago@next
 
-      - name: Build source
-        run: npm run-script build
+      - name: Build
+        run: spago build --strict
 
-      - name: Run tests
-        run: |
-          bower install
-          npm run-script test --if-present
+      - name: Test
+        run: spago test --strict
