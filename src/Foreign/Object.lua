@@ -1,7 +1,9 @@
 return {
   _copyST = (function(m)
     return function()
-      r = {}
+      local r = {}
+      local k
+      local v
       for k, v in pairs(m) do
         r[k] = v
       end
@@ -13,13 +15,17 @@ return {
     f()
   end),
   _fmapObject = (function(m, f)
-    r = {}
+    local r = {}
+    local k
+    local v
     for k, v in pairs(m) do
       r[k] = f(v)
     end
   end),
   _mapWithKey = (function(m, f)
-    r = {}
+    local r = {}
+    local k
+    local v
     for k, v in pairs(m) do
       r[k] = f(k)(v)
     end
