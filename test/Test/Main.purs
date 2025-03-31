@@ -27,8 +27,9 @@ example = do
 
   -- delete a value from an Object
   let deleted = FO.delete "a" inserted
+  log "a"
   Assert.assertEqual { actual: deleted, expected: FO.empty }
-
+  log "a"
   let
     -- convert homogeneous records to Object
     converted = FO.fromHomogeneous { a: 1, b: 2, c: 3}
