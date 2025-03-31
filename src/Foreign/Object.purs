@@ -147,8 +147,11 @@ foreign import _foldSCObject :: forall a z. Fn4 (Object a) z (z -> String -> a -
 foldMaybe :: forall a z. (z -> String -> a -> Maybe z) -> z -> Object a -> z
 foldMaybe f z m = runFn4 _foldSCObject m z f fromMaybe
 
+foreign import _all :: forall a. Fn2 (String -> a -> Boolean) (Object a) Boolean
+
 -- | Test whether all key/value pairs in a `Object` satisfy a predicate.
-foreign import all :: forall a. (String -> a -> Boolean) -> Object a -> Boolean
+all :: forall a. (String -> a -> Boolean) -> Object a -> Boolean
+all = runFn2 _all
 
 instance eqObject :: Eq a => Eq (Object a) where
   eq m1 m2 = (isSubmap m1 m2) && (isSubmap m2 m1)
@@ -247,7 +250,10 @@ fromFoldableWith f l = runST (do
 fromHomogeneous :: forall r a. Homogeneous r a => { | r } -> Object a
 fromHomogeneous = unsafeCoerce
 
-foreign import toArrayWithKey :: forall a b . (String -> a -> b) -> Object a -> Array b
+foreign import _toArrayWithKey :: forall a b . Fn2 (String -> a -> b) (Object a) (Array b)
+
+toArrayWithKey :: forall a b . (String -> a -> b) -> Object a -> Array b
+toArrayWithKey = runFn2 _toArrayWithKey
 
 -- | Unfolds a map into a list of key/value pairs
 toUnfoldable :: forall f a. Unfoldable f => Object a -> f (Tuple String a)

@@ -64,13 +64,11 @@ export function _foldSCObject(m, z, f, fromMaybe) {
   return acc;
 }
 
-export function all(f) {
-  return function (m) {
-    for (var k in m) {
-      if (hasOwnProperty.call(m, k) && !f(k)(m[k])) return false;
-    }
-    return true;
-  };
+export function _all(f, m) {
+  for (var k in m) {
+    if (hasOwnProperty.call(m, k) && !f(k)(m[k])) return false;
+  }
+  return true;
 }
 
 export function size(m) {
@@ -93,7 +91,7 @@ export function _lookupST(no, yes, k, m) {
   };
 }
 
-export function toArrayWithKey(f) {
+export function _toArrayWithKey(f) {
   return function (m) {
     var r = [];
     for (var k in m) {
