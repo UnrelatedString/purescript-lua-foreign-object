@@ -91,16 +91,14 @@ export function _lookupST(no, yes, k, m) {
   };
 }
 
-export function _toArrayWithKey(f) {
-  return function (m) {
-    var r = [];
-    for (var k in m) {
-      if (hasOwnProperty.call(m, k)) {
-        r.push(f(k)(m[k]));
-      }
+export function _toArrayWithKey(f, m) {
+  var r = [];
+  for (var k in m) {
+    if (hasOwnProperty.call(m, k)) {
+      r.push(f(k)(m[k]));
     }
-    return r;
-  };
+  }
+  return r;
 }
 
 export const keys = Object.keys || toArrayWithKey(function (k) {
