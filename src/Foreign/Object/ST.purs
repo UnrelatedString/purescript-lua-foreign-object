@@ -13,6 +13,7 @@ module Foreign.Object.ST
 
 import Control.Monad.ST (ST, Region)
 import Data.Maybe (Maybe(..))
+import Data.Function.Uncurried (Fn2, runFn2, Fn3, runFn3, Fn4, runFn4)
 
 -- | A reference to a mutable object
 -- |
@@ -31,12 +32,18 @@ foreign import new :: forall a r. ST r (STObject r a)
 
 -- | Get the value for a key in a mutable object
 peek :: forall a r. String -> STObject r a -> ST r (Maybe a)
-peek = peekImpl Just Nothing
+peek = runFn4 peekImpl Just Nothing
 
-foreign import peekImpl :: forall a b r. (a -> b) -> b -> String -> STObject r a -> ST r b
+foreign import peekImpl :: forall a b r. Fn4 (a -> b) b String (STObject r a) (ST r b)
 
 -- | Update the value for a key in a mutable object
-foreign import poke :: forall a r. String -> a -> STObject r a -> ST r (STObject r a)
+poke :: forall a r. String -> a -> STObject r a -> ST r (STObject r a)
+poke = runFn3 pokeImpl
+
+foreign import pokeImpl :: forall a r. Fn3 String a (STObject r a) (ST r (STObject r a))
 
 -- | Remove a key and the corresponding value from a mutable object
-foreign import delete :: forall a r. String -> STObject r a -> ST r (STObject r a)
+delete :: forall a r. String -> STObject r a -> ST r (STObject r a)
+delete = runFn2 deleteImpl
+
+foreign import deleteImpl :: forall a r. Fn2 String (STObject r a) (ST r (STObject r a))

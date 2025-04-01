@@ -3,35 +3,22 @@ const newImpl = function () {
 };
 export { newImpl as new };
 
-export function peekImpl(just) {
-  return function (nothing) {
-    return function (k) {
-      return function (m) {
-        return function () {
-          return {}.hasOwnProperty.call(m, k) ? just(m[k]) : nothing;
-        };
-      };
-    };
+export function peekImpl(just, nothing, k, m) {
+  return function () {
+    return {}.hasOwnProperty.call(m, k) ? just(m[k]) : nothing;
   };
 }
 
-export function poke(k) {
-  return function (v) {
-    return function (m) {
-      return function () {
-        m[k] = v;
-        return m;
-      };
-    };
+export function pokeImpl(k, v, m) {
+  return function () {
+    m[k] = v;
+    return m;
   };
 }
 
-const deleteImpl = function (k) {
-  return function (m) {
-    return function () {
-      delete m[k];
-      return m;
-    };
+export const deleteImpl = function (k, m) {
+  return function () {
+    delete m[k];
+    return m;
   };
 };
-export { deleteImpl as delete };
