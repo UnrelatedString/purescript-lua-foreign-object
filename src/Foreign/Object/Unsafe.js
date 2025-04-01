@@ -1,5 +1,3 @@
-export function unsafeIndex(m) {
-  return function (k) {
-    return m[k];
-  };
+export function _unsafeIndex(m, k) {
+  return m[k];
 }
