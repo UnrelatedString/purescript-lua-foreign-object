@@ -89,10 +89,19 @@ return {
     end
   end),
 
-  toArrayWithKey = (function(f, m)
-    
+  _toArrayWithKey = (function(f, m)
+    local r = {}
+    for k, v in pairs(m) do
+      r[#r+1] = f(k)(v)
+    end
+    return r
   end),
 
-  keys = (function()
+  keys = (function(m)
+    local r = {}
+    for k, v in pairs(m) do
+      r[#r+1] = k
+    end
+    return r
   end),
 }
