@@ -27,9 +27,12 @@ workspace:
   packageSet:
     path: ./packages.json
   backend:
-    cmd: pslua
-    args:
-      - "--foreign-path"
-      - "."
-      - "--lua-output-file"
-      - "output/main.lua"
+    cmd: ./pslua.sh
+    # cmd: pslua
+    # args:
+    #   - "--foreign-path"
+    #   - "."
+    #   - "--lua-output-file"
+    #   - "output/main.lua"
+    #   - "--entry"
+    #   - "Test.Main"
