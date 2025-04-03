@@ -25,4 +25,11 @@ package:
     license: BSD-3-Clause
 workspace:
   packageSet:
-    registry: 63.6.0
+    path: ./packages.json
+  backend:
+    cmd: pslua
+    args:
+      - "--foreign-path"
+      - "."
+      - "--lua-output-file"
+      - "output/main.lua"
