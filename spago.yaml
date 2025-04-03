@@ -35,4 +35,3 @@ workspace:
       - "output/main.lua"
       - "--entry"
       - "Test.Main"
-      - "--help"

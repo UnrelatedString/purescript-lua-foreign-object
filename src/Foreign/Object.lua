@@ -9,7 +9,7 @@ return {
     end
   end),
 
-  empty = {},
+  empty = ({}),
 
   runST = (function(f)
     f()
@@ -35,6 +35,7 @@ return {
       acc = bind(acc)(function(z)
         return f(z)(k)(v)
       end)
+    end
   end),
 
   _foldSCObject = (function(m, z, f, fromMaybe)
@@ -65,7 +66,7 @@ return {
   size = (function(m)
     local s = 0
     for k, v in pairs(m) do
-      s += 1
+      s = s + 1
     end
     return s
   end),
