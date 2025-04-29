@@ -8,18 +8,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Lua interpreter
+        uses: leafo/gh-actions-lua@v11
+
       - name: Set up Node 20
         uses: actions/setup-node@v4
         with:
           node-version: "20.x"
+      
+      - name: Cache Spago deps
+        uses: actions/cache@v4
+        with:
+          path: .spago
+          key: spago-deps-${{ hashFiles('spago.lock') }}
+          restore-keys: |
+            spago-deps-
 
-      - name: Set up Purescript and Spago
+      - name: Set up Purescript and spago
         run: |
           npm i -g purescript
           npm i -g spago@next
 
-      - name: Build
-        run: spago build --strict
+      - name: Download pslua
+        run: wget -c https://github.com/Unisay/purescript-lua/releases/download/0.2/pslua-linux_x86_64.tar.gz -O - | tar -xz
 
-      - name: Test
-        run: spago test --strict
+      - run: mkdir bin
+      - run: mv pslua bin
+
+      - name: Put pslua on PATH
+        run: realpath bin >> $GITHUB_PATH
+
+      - name: Build tests
+        run: spago build
+
+      - name: Run tests
+        run: lua test.lua

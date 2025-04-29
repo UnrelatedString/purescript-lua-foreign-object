@@ -32,6 +32,17 @@ workspace:
       - "--foreign-path"
       - "."
       - "--lua-output-file"
-      - "output/main.lua"
+      - "output/test.lua"
       - "--entry"
       - "Test.Main"
+  extraPackages:
+    random:
+      git: https://github.com/UnrelatedString/purescript-lua-random.git
+      ref: 7548ce29d5eaa818d7c649dce730aa0ff05f21e2
+    prelude:
+      git: https://github.com/UnrelatedString/purescript-lua-prelude.git
+      ref: 3dd38f7fa6acc4277a86441ba1b43b1ace34a1c9
+      dependencies: []
+    quickcheck:
+      git: https://github.com/UnrelatedString/purescript-lua-quickcheck.git
+      ref: d1cca51b204f537e83d53f81389fd154f450dd22
