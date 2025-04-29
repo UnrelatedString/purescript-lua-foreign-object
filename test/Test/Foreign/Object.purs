@@ -68,6 +68,7 @@ toAscArray = O.toAscUnfoldable
 
 objectTests :: Effect Unit
 objectTests = do
+ do
   log "Test inserting into empty tree"
   quickCheck $ \k v -> O.lookup k (O.insert k v O.empty) == Just (number v)
     <?> ("k: " <> show k <> ", v: " <> show v)
@@ -105,7 +106,7 @@ objectTests = do
 
   log "Lookup from singleton"
   quickCheck $ \k v -> O.lookup k (O.singleton k (v :: Int)) == Just v
-
+ do
   log "Random lookup"
   quickCheck' 1000 $ \instrs k v ->
     let
@@ -139,7 +140,7 @@ objectTests = do
   log "filter keeps those values for which predicate is true"
   quickCheck $ \(TestObject (s :: O.Object Int)) p ->
                  A.all p (O.values (O.filter p s))
-
+ do
   log "fromFoldable [] = empty"
   quickCheck (O.fromFoldable [] == (O.empty :: O.Object Unit)
     <?> "was not empty")
@@ -187,7 +188,7 @@ objectTests = do
   quickCheck $ \(TestObject m) ->
     let f m1 = O.fromFoldable ((O.toUnfoldable m1) :: L.List (Tuple String Int)) in
     O.fromFoldableWithIndex m == f m <?> show m
-
+ do
   log "fromFoldableWith const = fromFoldable"
   quickCheck $ \arr -> O.fromFoldableWith const arr ==
                        O.fromFoldable (arr :: L.List (Tuple String Int)) <?> show arr
@@ -223,7 +224,7 @@ objectTests = do
 
   log "fromFoldable = zip keys values"
   quickCheck $ \(TestObject m) -> O.toUnfoldable m == A.zipWith Tuple (O.keys m) (O.values m :: Array Int)
-
+ do
   log "mapWithKey is correct"
   quickCheck $ \(TestObject m :: TestObject Int) -> let
     f k v = k <> show v
@@ -246,7 +247,7 @@ objectTests = do
     let f k z v = z <> "," <> k <> ":" <> v
         g k v z = k <> ":" <> v <> "," <> z
     in foldlWithIndex f "" m <> "," === "," <> foldrWithIndex g "" m
-
+ do
   log "foldMapWithIndex f ~ traverseWithIndex (\\k v -> tell (f k v))"
   quickCheck \(TestObject m :: TestObject Int) ->
     let f _ v = "(" <> "k" <> "," <> show v <> ")"
@@ -279,7 +280,7 @@ objectTests = do
         go :: O.Object (Array Ordering) -> Array Ordering
         go = O.foldMap (const identity)
     in lhs == rhs <?> ("lhs: " <> show lhs <> ", rhs: " <> show rhs)
-
+ do
   log "fromFoldable stack safety"
   do
     let entries = 100000
