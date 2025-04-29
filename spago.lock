@@ -6736,7 +6736,7 @@
         },
         "strings": {
           "repo": "https://github.com/UnrelatedString/purescript-lua-strings.git",
-          "version": "v6.1.0",
+          "version": "09bd911babea33a3c6d394b2c1df43afa6a0f682",
           "dependencies": [
             "arrays",
             "enums",
@@ -8676,7 +8676,7 @@
     "strings": {
       "type": "git",
       "url": "https://github.com/UnrelatedString/purescript-lua-strings.git",
-      "rev": "d6ff26af58885ca9a1912c6f5a3f214dfcef0e1e",
+      "rev": "09bd911babea33a3c6d394b2c1df43afa6a0f682",
       "dependencies": [
         "arrays",
         "enums",

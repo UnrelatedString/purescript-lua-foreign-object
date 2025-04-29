@@ -9,6 +9,7 @@ let agnostic-upstream =
 let hack =
   { strings = pslua-upstream.strings //
       { repo = "https://github.com/UnrelatedString/purescript-lua-strings.git"
+      , version = "09bd911babea33a3c6d394b2c1df43afa6a0f682"
       }
   }
 

@@ -6603,7 +6603,7 @@
         "unsafe-coerce"
       ],
       "repo": "https://github.com/UnrelatedString/purescript-lua-strings.git",
-      "version": "v6.1.0"
+      "version": "09bd911babea33a3c6d394b2c1df43afa6a0f682"
     },
     "strings-extra": {
       "dependencies": [
