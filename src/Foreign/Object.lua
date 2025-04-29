@@ -12,7 +12,7 @@ return {
   empty = ({}),
 
   runST = (function(f)
-    f()
+    return f()
   end),
 
   _fmapObject = (function(m, f)
@@ -20,6 +20,7 @@ return {
     for k, v in pairs(m) do
       r[k] = f(v)
     end
+    return r
   end),
 
   _mapWithKey = (function(m, f)
@@ -27,6 +28,7 @@ return {
     for k, v in pairs(m) do
       r[k] = f(k)(v)
     end
+    return r
   end),
 
   __foldM = (function(bind, f, mz, m)
@@ -36,6 +38,7 @@ return {
         return f(z)(k)(v)
       end)
     end
+    return acc
   end),
 
   _foldSCObject = (function(m, z, f, fromMaybe)
@@ -54,7 +57,7 @@ return {
     return acc
   end),
 
-  all = (function(m, f)
+  _all = (function(f, m)
     for k, v in pairs(m) do
       if f(k)(v) == false then
         return false
