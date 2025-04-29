@@ -6,7 +6,14 @@ let agnostic-upstream =
       https://github.com/purescript/package-sets/releases/download/psc-0.15.15-20250402/packages.dhall
         sha256:26fe324d4486e5c196a84a409994bebd9ea809ae95529af4d78f48782b748c36
 
-in  { packages = agnostic-upstream // pslua-upstream
+let hack =
+  { strings = pslua-upstream.strings //
+      { repo = "https://github.com/UnrelatedString/purescript-lua-strings.git"
+      }
+  }
+
+
+in  { packages = agnostic-upstream // pslua-upstream // hack
     , compiler = Text/replace "v" "" agnostic-upstream.metadata.version
     , version = "0.0.1"
     }

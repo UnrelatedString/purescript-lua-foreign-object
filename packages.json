@@ -6602,7 +6602,7 @@
         "unfoldable",
         "unsafe-coerce"
       ],
-      "repo": "https://github.com/Unisay/purescript-lua-strings.git",
+      "repo": "https://github.com/UnrelatedString/purescript-lua-strings.git",
       "version": "v6.1.0"
     },
     "strings-extra": {

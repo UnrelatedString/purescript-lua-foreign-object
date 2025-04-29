@@ -6735,7 +6735,7 @@
           ]
         },
         "strings": {
-          "repo": "https://github.com/Unisay/purescript-lua-strings.git",
+          "repo": "https://github.com/UnrelatedString/purescript-lua-strings.git",
           "version": "v6.1.0",
           "dependencies": [
             "arrays",
@@ -8675,7 +8675,7 @@
     },
     "strings": {
       "type": "git",
-      "url": "https://github.com/Unisay/purescript-lua-strings.git",
+      "url": "https://github.com/UnrelatedString/purescript-lua-strings.git",
       "rev": "d6ff26af58885ca9a1912c6f5a3f214dfcef0e1e",
       "dependencies": [
         "arrays",

@@ -46,6 +46,3 @@ workspace:
     quickcheck:
       git: https://github.com/UnrelatedString/purescript-lua-quickcheck.git
       ref: d1cca51b204f537e83d53f81389fd154f450dd22
-    strings:
-      git: https://github.com/UnrelatedString/purescript-lua-strings.git
-      ref: 09bd911babea33a3c6d394b2c1df43afa6a0f682
